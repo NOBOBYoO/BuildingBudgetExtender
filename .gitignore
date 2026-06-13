@@ -1,0 +1,23 @@
+# Build output
+/build/
+/out/
+
+# Release artifacts
+/release/staging/
+/release/*.zip
+
+# vcpkg
+/vcpkg_installed/
+
+# IDE / editor
+/.vs/
+/.vscode/
+/.idea/
+*.user
+
+# OS junk
+Thumbs.db
+desktop.ini
+
+# build logs
+*.log

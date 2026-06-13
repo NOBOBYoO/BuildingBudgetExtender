@@ -1,0 +1,22 @@
+#include "BudgetManager.hpp"
+#include "Config.hpp"
+#include "EventHandlers.hpp"
+
+F4SE_PLUGIN_LOAD(const F4SE::LoadInterface* a_f4se)
+{
+	F4SE::Init(a_f4se);
+
+	const auto configPath =
+		std::filesystem::path{ F4SE::ROOT_DIRECTORY_PATH } / F4SE::PLUGINS_DIRECTORY_PATH / "BuildingBudgetExtender.ini";
+	BBE::Config::Get().LoadFromFile(configPath);
+
+	BBE::RegisterEventHandlers();
+
+	REX::LogInformation(
+		"BuildingBudgetExtender loaded (factor {:.2f}, threshold {:.0f}%). Config: {}",
+		BBE::Config::Get().budgetIncreaseFactor,
+		BBE::Config::Get().extendThreshold * 100.0F,
+		configPath.string());
+
+	return true;
+}
