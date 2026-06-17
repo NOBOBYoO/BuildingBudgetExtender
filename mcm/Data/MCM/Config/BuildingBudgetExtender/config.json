@@ -1,0 +1,177 @@
+{
+  "modName": "BuildingBudgetExtender",
+  "displayName": "Building Budget Extender",
+  "minMcmVersion": 1,
+  "content": [
+    {
+      "text": "Building Budget Extender",
+      "type": "section"
+    },
+    {
+      "text": "Automatically raises settlement build limits when you approach the vanilla cap. When draw calls or triangles reach the configured threshold, the max budget is extended so you can keep building without hitting the limit message.",
+      "type": "text"
+    },
+    {
+      "text": "Budget Extension",
+      "type": "section"
+    },
+    {
+      "id": "fBudgetIncreaseFactor:General",
+      "text": "Budget Increase Factor",
+      "type": "slider",
+      "help": "How much of the original budget is added each time the limit is extended (default 1.5).",
+      "valueOptions": {
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.1,
+        "sourceType": "ModSettingFloat"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "id": "fExtendThreshold:General",
+      "text": "Extend Threshold",
+      "type": "slider",
+      "help": "Extend when usage reaches this fraction of the current max (0.95 = at 95%).",
+      "valueOptions": {
+        "min": 0.5,
+        "max": 1.0,
+        "step": 0.01,
+        "sourceType": "ModSettingFloat"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "id": "fMaxBudgetMultiplier:General",
+      "text": "Max Budget Multiplier",
+      "type": "slider",
+      "help": "Cap each settlement at this multiple of its original budget. 0 = unlimited.",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 50.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "text": "Notifications",
+      "type": "section"
+    },
+    {
+      "id": "bShowExtendNotification:Notifications",
+      "text": "Show Extend Notification",
+      "type": "switcher",
+      "help": "Show an on-screen message when the budget is extended.",
+      "valueOptions": {
+        "sourceType": "ModSettingBool"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "id": "bShowCapNotification:Notifications",
+      "text": "Show Cap Notification",
+      "type": "switcher",
+      "help": "Show an on-screen message when a capped settlement reaches its max budget.",
+      "valueOptions": {
+        "sourceType": "ModSettingBool"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "text": "Advanced",
+      "type": "section"
+    },
+    {
+      "id": "fDefaultMaxDrawsFallback:Advanced",
+      "text": "Default Max Draws Fallback",
+      "type": "slider",
+      "help": "Fallback draw limit for workshops that report invalid defaults.",
+      "valueOptions": {
+        "min": 1000.0,
+        "max": 500000.0,
+        "step": 1000.0,
+        "sourceType": "ModSettingFloat"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "id": "fDefaultMaxTrianglesFallback:Advanced",
+      "text": "Default Max Triangles Fallback",
+      "type": "slider",
+      "help": "Fallback triangle limit for workshops that report invalid defaults.",
+      "valueOptions": {
+        "min": 1000.0,
+        "max": 500000.0,
+        "step": 1000.0,
+        "sourceType": "ModSettingFloat"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "id": "bVerboseLogging:Advanced",
+      "text": "Verbose Logging",
+      "type": "switcher",
+      "help": "Write budget extension details to the F4SE log.",
+      "valueOptions": {
+        "sourceType": "ModSettingBool"
+      },
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ApplyFromMcm",
+        "params": []
+      }
+    },
+    {
+      "text": "Tools",
+      "type": "section"
+    },
+    {
+      "text": "Reset Budget",
+      "type": "button",
+      "help": "Reset max budget to original for the nearest settlement. Only works when current usage is at or below the original. A confirmation message appears on screen.",
+      "action": {
+        "type": "CallGlobalFunction",
+        "script": "BuildingBudgetExtenderNative",
+        "function": "ResetBudget",
+        "params": []
+      }
+    }
+  ]
+}
